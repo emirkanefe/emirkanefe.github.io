@@ -11,10 +11,17 @@
         .content { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         h2 { border-bottom: 2px solid #2c3e50; padding-bottom: 10px; color: #2c3e50; }
         .project { border-left: 4px solid #3498db; padding: 1px 15px; margin-bottom: 25px; background: #f9f9f9; }
-        .project h3 { margin-top: 10px; color: #2980b9; }
         .tag { display: inline-block; background: #e1e8ed; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; margin-right: 5px; font-weight: bold; }
+        
+        /* Buton Stili */
+        .btn-cert { background-color: #27ae60; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin: 20px 0; transition: background 0.3s; }
+        .btn-cert:hover { background-color: #2ecc71; }
+
+        /* Sertifika Galeri Alanı */
+        #cert-gallery { display: none; margin-top: 20px; text-align: center; }
+        .cert-img { width: 100%; max-width: 600px; margin-bottom: 20px; border: 2px solid #ddd; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        
         a { color: #3498db; text-decoration: none; font-weight: bold; }
-        a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -23,12 +30,26 @@
         <p>Ege Üniversitesi İstatistik Son Sınıf Öğrencisi</p>
         <p>Veri Analisti Adayı</p>
     </header>
-    <div class="content">
+   <div class="content">
         <h2>Hakkımda</h2>
-        <p>Veri analizi, istatistiksel modelleme ve makine öğrenmesi üzerine projeler geliştiriyorum. Ege Üniversitesi İstatistik bölümündeki eğitimim boyunca verinin işlenmesi ve anlamlandırılması süreçlerinde aktif rol aldım.
-        Uşak üniversitesinde Bilgisayar Programcılığı önlisansımı tamamladım. Bilgisayar Programcılığı serüvenimde uygulama, oyun geliştirme; edindiğim yazılım dilleri sayesinde veri tabanı oluşturma ve yönetme; yaptığım staj sayesinde sahada çalışma, bilgisayaların donanımsal ve yazılımsal mimarisini öğrenme konusunda kendimi geliştirme imkanı buldum.</p>
+        <p>Veri analizi, istatistiksel modelleme ve makine öğrenmesi üzerine projeler geliştiriyorum.</p>
         
+        <button class="btn-cert" onclick="toggleCertificates()">🎓 Sertifikalarımı Gör</button>
+        
+        <div id="cert-gallery">
+            <h3>Sertifikalar ve Başarı Belgeleri</h3>
+            <img src="miuul_sertifika.jpg" alt="Miuul Veri Bilimi Sertifikası" class="cert-img">
+            <p><em>Miuul Data Science Bootcamp (Devam Ediyor)</em></p>
+        </div>
+
         <h2>Öne Çıkan Projeler</h2>
+        <div class="project">
+            <h3>Kalite Kontrol Komisyonu Veri Analizi</h3>
+            <p>PSPP kullanarak anket verilerinin istatistiksel raporlamasını gerçekleştirdim.</p>
+            <span class="tag">PSPP</span> <span class="tag">Raporlama</span>
+        </div>      
+       
+       <h2>Öne Çıkan Projeler</h2>
         
         <div class="project">
             <h3>Kalite Kontrol Komisyonu Veri Analizi ve Raporlama</h3>
@@ -55,5 +76,16 @@
         <h2>İletişim</h2>
         <p>Bana <a href="https://www.linkedin.com/in/emirkan-efe-64830b2b0/" target="_blank">LinkedIn</a> üzerinden ulaşabilirsiniz.</p>
     </div>
+
+    <script>
+        function toggleCertificates() {
+            var x = document.getElementById("cert-gallery");
+            if (x.style.display === "none" || x.style.display === "") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
