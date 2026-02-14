@@ -14,23 +14,82 @@
         .tag { display: inline-block; background: #e1e8ed; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; margin-right: 5px; font-weight: bold; }
         
         /* Buton Stili */
-        .btn-cert { background-color: #27ae60; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin: 20px 0; transition: background 0.3s; }
+        .btn-cert { background-color: #27ae60; color: white; padding: 12px 24px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin: 20px 0; transition: background 0.3s; font-weight: bold; width: 100%; }
         .btn-cert:hover { background-color: #2ecc71; }
 
         /* Sertifika Galeri Alanı */
-        #cert-gallery { display: none; margin-top: 20px; text-align: center; }
-        .cert-img { width: 100%; max-width: 600px; margin-bottom: 20px; border: 2px solid #ddd; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        #cert-gallery { display: none; margin-top: 20px; text-align: center; border-top: 1px solid #eee; padding-top: 20px; }
+        /* Tıklanabilir resimler için stil */
+        .cert-img { width: 100%; max-width: 600px; margin-bottom: 15px; border: 3px solid #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); cursor: zoom-in; transition: transform 0.2s; }
+        .cert-img:hover { transform: scale(1.02); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
         
         a { color: #3498db; text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; }
+
+        /* --- LIGHTBOX (Büyük Resim Modu) STİLLERİ --- */
+        .modal {
+            display: none; /* Başlangıçta gizli */
+            position: fixed; /* Sayfada sabit durur */
+            z-index: 1000; /* En üstte görünür */
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.85); /* Arkası yarı saydam siyah */
+        }
+
+        /* Büyük resim stili */
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 900px;
+            max-height: 80vh; /* Ekran boyunu taşmasın */
+            object-fit: contain;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(255,255,255,0.1);
+            animation-name: zoom;
+            animation-duration: 0.3s;
+        }
+
+        /* Açılma animasyonu */
+        @keyframes zoom {
+            from {transform:scale(0)}
+            to {transform:scale(1)}
+        }
+
+        /* Kapatma butonu (X) */
+        .close {
+            position: absolute;
+            top: 25px;
+            right: 45px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .close:hover, .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        /* Mobilde kapatma butonu ayarı */
+        @media only screen and (max-width: 700px){
+            .modal-content { width: 95%; }
+            .close { top: 15px; right: 25px; font-size: 30px; }
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>Emirkan Efe</h1>
-        <p>Ege Üniversitesi İstatistik Son Sınıf Öğrencisi</p>
-        <p>Veri Analisti Adayı</p>
+        <p>Ege Üniversitesi İstatistik Son Sınıf Öğrencisi | Veri Bilimi Yolculuğu</p>
     </header>
-   <div class="content">
+    <div class="content">
         <h2>Hakkımda</h2>
         <p>Veri analizi, istatistiksel modelleme ve makine öğrenmesi üzerine projeler geliştiriyorum.
         Ege Üniversitesi İstatistik bölümündeki eğitimim boyunca verinin işlenmesi ve anlamlandırılması süreçlerinde aktif rol aldım.<br>
@@ -40,54 +99,41 @@
         
         <button class="btn-cert" onclick="toggleCertificates()">🎓 Sertifikalarımı Gör</button>
         
-    <div id="cert-gallery">
-        <h3>Sertifikalar ve Başarı Belgeleri</h3>
-    
-        <img src="sertifika/crm_analytics.jpg"  class="cert-img">
-        <img src="sertifika/ds_ai_sertifika.jpg.jpg" class="cert-img">
-        <img src="sertifika/ds_python.jpg"  class="cert-img">
-        <img src="sertifika/python_ege.png" class="cert-img">
-        <img src="sertifika/sql_ege.png"  class="cert-img">
-        
-    </div>
-       
+        <div id="cert-gallery">
+            <h3>Sertifikalar ve Başarı Belgeleri</h3>
+            <p style="font-size: 0.9em; color: #666;">(Büyütmek için resimlerin üzerine tıklayabilirsiniz)</p>
+            
+            <img src="sertifika/ds_python.jpg" alt="Python for Data Science" class="cert-img" onclick="openModal(this.src)">
+            <p><em>Data Science for Python</em></p>
+            
+            <img src="sertifika/sql_sertifika.jpg" alt="SQL Eğitimi" class="cert-img" onclick="openModal(this.src)">
+            <p><em>SQL Eğitimi Sertifika Programı</em></p>
+             </div>
 
         <h2>Öne Çıkan Projeler</h2>
         <div class="project">
             <h3>Kalite Kontrol Komisyonu Veri Analizi</h3>
-            <p>PSPP kullanarak anket verilerinin istatistiksel raporlamasını gerçekleştirdim.</p>
-            <span class="tag">PSPP</span> <span class="tag">Raporlama</span>
-        </div>      
-       
-       <h2>Öne Çıkan Projeler</h2>
-        
-        <div class="project">
-            <h3>Kalite Kontrol Komisyonu Veri Analizi ve Raporlama</h3>
-            <p>Ege Üniversitesi İstatistik Bölümü Kalite Kontrol Komisyonu bünyesinde gerçekleştirilen anketlerin analiz sürecini yönettim. Verilerin temizlenmesi ve analiz edilmesi aşamalarında <strong>PSPP</strong> kullanarak detaylı istatistiksel raporlar hazırladım.</p>
-            <span class="tag">PSPP</span> <span class="tag">Veri Analizi</span> <span class="tag">Raporlama</span>
+            <p>Ege Üniversitesi bünyesinde anket verilerini PSPP kullanarak analiz ettim ve raporladım.</p>
+            <span class="tag">PSPP</span> <span class="tag">Veri Analizi</span>
         </div>
 
         <div class="project">
-            <h3>İzmir Baraj Doluluk Oranı Tahmini (Lisans Tezi)</h3>
-            <p>Yapay Sinir Ağları (YSA) kullanarak İzmir ilindeki barajların doluluk oranlarını geçmiş verilere dayanarak tahmin eden bir model geliştirdim.</p>
-            <span class="tag">Python</span> <span class="tag">Yapay Sinir Ağları</span> <span class="tag">Tahminleme</span>
+            <h3>İzmir Baraj Doluluk Oranı Tahmini</h3>
+            <p>Lisans tezim kapsamında Yapay Sinir Ağları (ANN) kullanarak doluluk tahmini yapan bir model geliştirdim.</p>
+            <span class="tag">Python</span> <span class="tag">ANN</span>
         </div>
-
-        <div class="project">
-            <h3>Veri ve İstatistik Topluluğu</h3>
-            <p>Topluluğumuzun genel video ve grafik tasarım işleri ile uğraşırken halihazırda olan Photoshop ve Premiere Pro yeteneklerimi geliştirdim. Topluluğumuzun logosunu tasarlarken yaratıcı düşünme becerilerim gelişti</p>
-            <span class="tag">Photoshop</span> <span class="tag">Premiere Pro</span> <span class="tag">Görsel Tasarım</span> <span class="tag">Video Manipülasyonu</span> <span class="tag">Yaratıcılık</span>
-        </div>
-        
-        
-        <h2>Yetenekler</h2>
-        <p><strong>Programlama & Araçlar:</strong> Python (Pandas, NumPy, Matplotlib), R, PSPP, SQL, Git/GitHub</p>
 
         <h2>İletişim</h2>
-        <p>Bana <a href="https://www.linkedin.com/in/emirkan-efe-64830b2b0/" target="_blank">LinkedIn</a> üzerinden ulaşabilirsiniz.</p>
+        <p>Bana <a href="https://www.linkedin.com/in/emirkan-efe-64830b2b0/" target="_blank">LinkedIn</a> üzerinden ulaşabilir veya projelerimi GitHub'da takip edebilirsiniz.</p>
+    </div>
+
+    <div id="myModal" class="modal" onclick="closeModal()">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="img01">
     </div>
 
     <script>
+        // Sertifika galerisini açıp kapatan mevcut fonksiyon
         function toggleCertificates() {
             var x = document.getElementById("cert-gallery");
             if (x.style.display === "none" || x.style.display === "") {
@@ -95,6 +141,22 @@
             } else {
                 x.style.display = "none";
             }
+        }
+
+        // --- YENİ EKLENEN FONKSİYONLAR ---
+        
+        // Resmi büyütüp açan fonksiyon
+        function openModal(src) {
+            var modal = document.getElementById("myModal");
+            var modalImg = document.getElementById("img01");
+            modal.style.display = "flex"; // Modalı görünür yap
+            modal.style.alignItems = "center"; // Dikey ortala
+            modalImg.src = src; // Tıklanan resmin kaynağını büyük resme ver
+        }
+
+        // Modalı kapatan fonksiyon
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
         }
     </script>
 </body>
