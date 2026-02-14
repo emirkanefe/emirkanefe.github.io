@@ -13,40 +13,40 @@
         .project { border-left: 4px solid #3498db; padding: 1px 15px; margin-bottom: 25px; background: #f9f9f9; }
         .tag { display: inline-block; background: #e1e8ed; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; margin-right: 5px; font-weight: bold; }
         
-        /* Buton Stili */
+       
         .btn-cert { background-color: #27ae60; color: white; padding: 12px 24px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin: 20px 0; transition: background 0.3s; font-weight: bold; width: 100%; }
         .btn-cert:hover { background-color: #2ecc71; }
 
-        /* Sertifika Galeri Alanı */
+        
         #cert-gallery { display: none; margin-top: 20px; text-align: center; border-top: 1px solid #eee; padding-top: 20px; }
-        /* Tıklanabilir resimler için stil */
+       
         .cert-img { width: 100%; max-width: 600px; margin-bottom: 15px; border: 3px solid #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); cursor: zoom-in; transition: transform 0.2s; }
         .cert-img:hover { transform: scale(1.02); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
         
         a { color: #3498db; text-decoration: none; font-weight: bold; }
         a:hover { text-decoration: underline; }
 
-        /* --- LIGHTBOX (Büyük Resim Modu) STİLLERİ --- */
+       
         .modal {
-            display: none; /* Başlangıçta gizli */
-            position: fixed; /* Sayfada sabit durur */
-            z-index: 1000; /* En üstte görünür */
+            display: none; 
+            position: fixed;
+            z-index: 1000; 
             padding-top: 50px;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.85); /* Arkası yarı saydam siyah */
+            background-color: rgba(0,0,0,0.85); 
         }
 
-        /* Büyük resim stili */
+    
         .modal-content {
             margin: auto;
             display: block;
             width: 80%;
             max-width: 900px;
-            max-height: 80vh; /* Ekran boyunu taşmasın */
+            max-height: 80vh; 
             object-fit: contain;
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(255,255,255,0.1);
@@ -54,13 +54,13 @@
             animation-duration: 0.3s;
         }
 
-        /* Açılma animasyonu */
+        
         @keyframes zoom {
             from {transform:scale(0)}
             to {transform:scale(1)}
         }
 
-        /* Kapatma butonu (X) */
+       
         .close {
             position: absolute;
             top: 25px;
@@ -77,7 +77,7 @@
             cursor: pointer;
         }
         
-        /* Mobilde kapatma butonu ayarı */
+       
         @media only screen and (max-width: 700px){
             .modal-content { width: 95%; }
             .close { top: 15px; right: 25px; font-size: 30px; }
@@ -132,7 +132,7 @@
     </div>
 
     <script>
-        // Sertifika galerisini açıp kapatan mevcut fonksiyon
+     
         function toggleCertificates() {
             var x = document.getElementById("cert-gallery");
             if (x.style.display === "none" || x.style.display === "") {
@@ -142,18 +142,18 @@
             }
         }
 
-        // --- YENİ EKLENEN FONKSİYONLAR ---
+      
         
-        // Resmi büyütüp açan fonksiyon
+       
         function openModal(src) {
             var modal = document.getElementById("myModal");
             var modalImg = document.getElementById("img01");
-            modal.style.display = "flex"; // Modalı görünür yap
-            modal.style.alignItems = "center"; // Dikey ortala
-            modalImg.src = src; // Tıklanan resmin kaynağını büyük resme ver
+            modal.style.display = "flex"; 
+            modal.style.alignItems = "center"; 
+            modalImg.src = src; 
         }
 
-        // Modalı kapatan fonksiyon
+       
         function closeModal() {
             document.getElementById("myModal").style.display = "none";
         }
